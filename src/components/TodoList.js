@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
+import { connect } from 'react-redux';
 
 class TodoList extends Component {
-  deleteTodo(index) {
-    this.props.del(index);
-  }
-
   render() {
     return (
       <div>
@@ -18,7 +15,7 @@ class TodoList extends Component {
                 todo={todo}
                 index={index}
                 key={index}
-                del={this.deleteTodo.bind(this)}>
+                >
                 </TodoItem>
               )
             })
@@ -29,4 +26,10 @@ class TodoList extends Component {
   }
 }
 
-export default TodoList;
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  }
+}
+
+export default connect(mapStateToProps)(TodoList);

@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteTodo } from '../actions/todoActions';
 
 class TodoItem extends Component {
-  deleteTodo(index) {
-    this.props.del(index);
+  clickDeleteTodo(index) {
+    this.props.deleteTodo(index);
   }
 
   render() {
     return (
       <li>
         {this.props.todo}
-        <button onClick={this.deleteTodo.bind(this, this.props.index)}>DEL</button>
+        <button onClick={this.clickDeleteTodo.bind(this, this.props.index)}>DEL</button>
       </li>
     );
   }
 }
 
-export default TodoItem;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteTodo: (index) => dispatch(deleteTodo(index))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(TodoItem);

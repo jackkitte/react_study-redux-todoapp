@@ -11,23 +11,11 @@ class App extends Component {
     }
   }
 
-  addTodo(newTodo) {
-    const todos = this.state.todos;
-    todos.push(newTodo);
-    this.setState({todos: todos});
-  }
-
-  deleteTodo(index) {
-    const todos = this.state.todos;
-    todos.splice(index, 1);
-    this.setState({todos: todos});
-  }
-
   render() {
     return (
       <div>
-        <TodoForm add={this.addTodo.bind(this)}></TodoForm>
-        <TodoList todos={this.state.todos} del={this.deleteTodo.bind(this)}></TodoList>
+        <TodoForm></TodoForm>
+        <TodoList></TodoList>
       </div>
     );
   }
